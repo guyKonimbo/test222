@@ -20,6 +20,9 @@ const Popup = () => {
        const [sittingsIsActive, setSittingsIsActive] = useState(false);
        const [jsonLinkStoreCategory, setJsonLinkStoreCategory] = useState("");
        const [eroorIsActive, setErorrIsActive] = useState(' ');
+       const [isChecked, setIsChecked] = useState(false);
+
+
       //  const [headlineText, setHeadlineText] = useState("משיכת מוצרים");
        console.log('sittingsIsActive',sittingsIsActive);
         useEffect(() => {
@@ -34,17 +37,34 @@ const Popup = () => {
   
 
       }, []);
-      var testgg = ""
-      chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-        if (message.type === 'DATA') {
-          setTest(message.data);
-          console.log('settest');
-        }
-      });
+
+      useEffect(() => {
+      if(isChecked){
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {message: "ON"}, function(response) {
+      console.log(response);
+    });
+    });
+    }else{
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {message: "OFF"}, function(response) {
+      console.log(response);
+    });
+    });
+    }
+      }, [isChecked]);
+
+
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  }
+
+
 
       
     
-       let headlineText = <h1 className='suppliers__headline'>משיכת מוצרים</h1>
+       let headlineText = <h1  className='suppliers__headline'>משיכת מוצרים</h1>
       if(sittingsIsActive){
         headlineText = <h1 className='suppliers__headline'> הגדרות</h1>
       }
@@ -79,7 +99,7 @@ const Popup = () => {
         <div>
         <label className='suppliers__checkbox'>
         אפשר הוספת מוצרים       
-      <input type="checkbox"></input>
+      <input type="checkbox" checked={isChecked}  onChange={handleCheckboxChange}></input>
         <span className="checkbox-blog-switch">
         </span>
         </label>

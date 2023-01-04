@@ -7,8 +7,21 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.tabs.sendMessage(tab.id, { type: "EXECUTE_SCRIPT" });
   });
   
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    if (message.type === 'DATA') {
-      chrome.runtime.sendMessage({ type: 'DATA', data: message.data });
-    }
+// chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+//     if (message.type === 'ON') {
+//       chrome.runtime.sendMessage({ type: 'DATA', data: message.data });
+//     }
+//   });
+
+
+chrome.tabs.query({
+  active: true
+  , currentWindow: true
+}, function(tabs) {
+  // Send a message to the content script of the active tab
+  chrome.tabs.sendMessage(tabs[0].id, {
+    type: 'inject-css'
   });
+});
+
+ 

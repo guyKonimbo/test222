@@ -1,1 +1,1 @@
-chrome.browserAction.onClicked.addListener((function(e){chrome.tabs.sendMessage(e.id,{type:"EXECUTE_SCRIPT"})})),chrome.runtime.onMessage.addListener((function(e,n,t){"DATA"===e.type&&chrome.runtime.sendMessage({type:"DATA",data:e.data})}));
+chrome.browserAction.onClicked.addListener((function(e){chrome.tabs.sendMessage(e.id,{type:"EXECUTE_SCRIPT"})})),chrome.tabs.query({active:!0,currentWindow:!0},(function(e){chrome.tabs.sendMessage(e[0].id,{type:"inject-css"})}));
