@@ -12,11 +12,14 @@
 input.checkbox_konimbo {
     appearance: none;
     border: 2px solid #000;
+    height: 20px;
+    width: 20px;
 }
 
 input.checkbox_konimbo:checked{
+    border: 2px solid #8CBD34;
     background-color: #8CBD34;
-    border: none;
+    /* border: none; */
     background-repeat: no-repeat;
     background-position: center;
     content: "";

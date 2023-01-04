@@ -29,7 +29,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   function injectedFunction(state) {
     if(state=="ON"){
 
- console.log("wo55555");
+ console.log("w6666");
 
   console.log("state on",state);
   const aTags = document.querySelectorAll('a');
@@ -39,7 +39,19 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   checkbox.className = 'checkbox_konimbo';
   checkbox.value = aTags[i].href;
   aTags[i].appendChild(checkbox);
-  }}
+  }
+ const checkboxes2 = document.querySelectorAll('input[type=checkbox].checkbox_konimbo');
+    for (let i = 0; i < checkboxes2.length; i++) {
+       let checkboxactive = checkboxes2[i];
+   checkboxactive.addEventListener('change', function() {
+    if(this.checked){
+        localStorage.setItem('checkboxValue', this.value);
+    }
+        
+     });  
+    }
+
+}
   else{
    const checkboxes = document.querySelectorAll('input[type=checkbox].checkbox_konimbo');
    console.log("state off1",state);
