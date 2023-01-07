@@ -1,0 +1,27 @@
+/* input.checkbox_konimbo:after {
+    content: "";
+    background: url(https://konimboimages.s3.amazonaws.com/system/photos/336358/original/6b109bee5978405c70861ccc8d7b7c78.png);
+    width: 15px;
+    height: 15px;
+    display: block;
+    background-size: 15px;
+    position: relative;
+    right: 14px;
+} */
+
+input.checkbox_konimbo {
+    appearance: none;
+    border: 2px solid #000;
+    height: 20px;
+    width: 20px;
+}
+
+input.checkbox_konimbo:checked{
+    border: 2px solid #8CBD34;
+    background-color: #8CBD34;
+    /* border: none; */
+    background-repeat: no-repeat;
+    background-position: center;
+    content: "";
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736384/original/42034c06ad0517336ad1df937337efff.svg?1666102071);
+}

@@ -38,7 +38,7 @@ function SittingsComponent(prop) {
       <span className="back_btn" onClick={() => prop.SittingsIsActive(false)}></span>
       <label className="suppliers__label">
         הכנס/י לינק קטגוריות החנות 
-      <input className="suppliers__label" type="text" name="jsonLink"  ref={input_jsonLink}  />
+      <input  type="text" name="jsonLink"  ref={input_jsonLink}  />
       </label>
       <button className='suppliers__button' type="submit">שמירה</button>
     </form>

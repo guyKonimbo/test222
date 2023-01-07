@@ -6,8 +6,12 @@
     "action" : {
         "default_popup": "popup.html",
         "default_title": "React Boilerplate",
-        "default_icon" : "icon.png"
+        "default_icon" : "icon.png",
+        "type": "persistent"
     },
+    "browser_action": {
+        "type": "persistent"
+      },
     "chrome_url_overrides": {
         "newtab": "newTab.html"
     },
@@ -15,7 +19,9 @@
         "tabs",
         "bookmarks",
         "storage",
-        "identity"
+        "identity",
+        "activeTab", 
+        "scripting"
     ],
     "icons": {
         "16" : "icon.png",
@@ -29,7 +35,7 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["contentScript.js"]
+            "js": ["contentScript.js"] 
         }
     ]
 }

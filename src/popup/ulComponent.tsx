@@ -27,7 +27,8 @@ const ListWithRemoveItem = (prop) => {
   useEffect(() => {
     try {
       if(list.length!=0){
-      localStorage.setItem('data', JSON.stringify(list)); 
+
+      // localStorage.setItem('data', JSON.stringify(list)); 
       console.log('delet prop',list);
       }
     }catch (error) {
@@ -36,7 +37,7 @@ const ListWithRemoveItem = (prop) => {
   }, [list]);
   
   const handleClick = (id) => {
-    const updatedItems = list.filter(item => item.item !== id);
+    const updatedItems = list.filter(item => item.category_id !== id);
     setList(updatedItems);
   }
 
@@ -54,9 +55,9 @@ const ListWithRemoveItem = (prop) => {
         console.log('randomNumber',randomNumber);
       return (
               
-        <li key={item.item} >         
-          <label>{item.product_name} {item.category_id}</label>
-          <span  onClick={() =>{  return handleClick(item.item)}}></span>
+        <li key={randomNumber} >         
+          <label className="wrap_product_line"><span className="product_line">{item.product_url}  </span></label>
+          <span  className={"delete_btn"+ item.category_id} onClick={() =>{  return handleClick(randomNumber)}}></span>
         </li>
       )})}
      {/* {data.map((item) => (
