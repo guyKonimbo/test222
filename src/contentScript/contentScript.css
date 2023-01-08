@@ -25,3 +25,12 @@ input.checkbox_konimbo:checked{
     content: "";
     background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736384/original/42034c06ad0517336ad1df937337efff.svg?1666102071);
 }
+
+#iframe_suppliers_extension{
+    position: fixed;
+    z-index: 2147483647;
+    top: 15px;
+    border: none;
+    left: 15px;
+    height: 430px;
+}

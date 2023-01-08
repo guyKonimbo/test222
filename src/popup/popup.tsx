@@ -1,5 +1,5 @@
 import './popup.css'
-import React , { useState ,useEffect}  from 'react';
+import React , { useState ,useEffect , useRef}  from 'react';
 import Select from './selectComponent';
 import ListWithRemoveItem from './ulComponent';
 import AddProduct from './AddProduct'
@@ -21,6 +21,8 @@ const Popup = () => {
        const [jsonLinkStoreCategory, setJsonLinkStoreCategory] = useState("");
        const [eroorIsActive, setErorrIsActive] = useState(' ');
        const [isChecked, setIsChecked] = useState(false);
+       const messageListener = useRef(null);
+
 
        console.log('new 2244');
       //  const [headlineText, setHeadlineText] = useState("משיכת מוצרים");
@@ -33,6 +35,50 @@ const Popup = () => {
               
               }})
             }, []);
+
+
+    useEffect(() => {
+      chrome.runtime.onMessage.addListener((request) => {
+        console.log('reqmsg type55',request.type);
+         console.log('reqmsg',request.message);
+        if(request.type=="checkbox_clicked"){
+        chrome.storage.local.get(['productsData'], result => {
+                if(result.productsData){
+                  fetch(request.message)
+                       .then(response => response.text())
+                       .then(html => {
+                        const doc = new DOMParser().parseFromString(html, "text/html");
+                        const title = doc.title;
+                        console.log(title);
+                            const array = result.productsData;
+                            const randomNumber = Math.floor(Math.random() * 10000); 
+                            const dataInput = { category_id: value , product_url: request.message ,id: randomNumber ,page_title:title };
+                            chrome.storage.local.set({ productsData: [...array,dataInput] }, () => {
+                            console.log('Array updated' ,  [...array,dataInput]);
+                            setData([...array,dataInput]);   
+                            });
+                         });
+                }else{
+                    fetch(request.message)
+                       .then(response => response.text())
+                       .then(html => {
+                        const doc = new DOMParser().parseFromString(html, "text/html");
+                        const title = doc.title;
+                        console.log(title);
+                        const datainput = { category_id: value , product_url: request.message ,id:0 , page_title:title};
+                       chrome.storage.local.set({ productsData: [datainput] }, () => {
+                       console.log('Array saved to local storage' ,  [datainput]);
+                       setData(prevdata=> [...prevdata,datainput]);   
+                       });          
+                         });
+                }
+        });
+      }
+      });
+    }, [value])
+
+
+  
   
         // retrieve the JSON data from local storage and parse it
         // const dataJSON = JSON.parse(localStorage.getItem('data'));
@@ -61,26 +107,7 @@ const Popup = () => {
       }, [isChecked]);
 
 
-      chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        console.log(request.message);
-        chrome.storage.local.get(['productsData'], result => {
-                if(result.productsData){
-                  const array = result.productsData;
-                  const dataInput = { category_id: value , product_url: request.message ,id: Array.length+1};
-                  chrome.storage.local.set({ productsData: [...array,dataInput] }, () => {
-                  console.log('Array updated' ,  [...array,dataInput]);
-                  setData([...array,dataInput]);   
-                  });
-                }else{
-                  const datainput = { category_id: value , product_url: request.message ,id:0};
-                  chrome.storage.local.set({ productsData: [datainput] }, () => {
-                    console.log('Array saved to local storage' ,  [datainput]);
-                    setData(prevdata=> [...prevdata,datainput]);   
-                  });
 
-                }
-        });
-      });
 
 
 

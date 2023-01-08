@@ -12,3 +12,18 @@ chrome.storage.local.get(['urllik'], result => {
     console.log('get val back urllik',result.urllik) // returns value
 })
 
+
+  chrome.action.onClicked.addListener(tab => {
+    // Send a message to the active tab
+      console.log("clicked icon on tab ", tab);
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      var activeTab = tabs[0];
+      chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
+    });
+  });
+
+
+
+  
+
+

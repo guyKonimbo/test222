@@ -6,6 +6,7 @@ import './contentScript.css'
 // })
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  console.log('click');  
   console.log(request.message);
   injectedFunction(request.message);
 });
@@ -13,15 +14,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 window.onload = (event) => {
     console.log('page is fully loaded445');     
     const val11 = "dom pagee";
+
 };
 
 
 
   function injectedFunction(state) {
-    if(state=="ON"){
-
- console.log("wravvvv");
-
+  switch(state) {
+  case "ON":
+    // code block
+  console.log("switch on");
   console.log("state on",state);
   const aTags = document.querySelectorAll('a');
   for (let i = 0; i < aTags.length; i++) {
@@ -36,14 +38,16 @@ window.onload = (event) => {
        let checkboxactive = checkboxes2[i];
    checkboxactive.addEventListener('change', function() {
     if(this.checked){
-      chrome.runtime.sendMessage({ message: this.value});
+      chrome.runtime.sendMessage({ 
+       type: 'checkbox_clicked',
+       message: this.value });
     }     
      });  
     }
-
-}
-  else{
-   const checkboxes = document.querySelectorAll('input[type=checkbox].checkbox_konimbo');
+    break;
+  case "OFF":
+    // code block
+    const checkboxes = document.querySelectorAll('input[type=checkbox].checkbox_konimbo');
    console.log("state off1",state);
    for (let i = 0; i < checkboxes.length; i++) {
   const checkbox = checkboxes[i];
@@ -51,5 +55,24 @@ window.onload = (event) => {
   checkbox.parentNode.removeChild(checkbox);
    }
   }  
-  }
+    break;
+  case "clicked_browser_action":
+    // code block
+          console.log('switch ifrmae_is_on555');  
+         if (document.getElementById('iframe_suppliers_extension')) { 
+  // At least one iframe element with the class "myClass" exists
+          const iframe =  document.getElementById('iframe_suppliers_extension');
+           iframe.remove();
+        } else {
+  // No iframe elements with the class "myClass" exist
+    const iframe = document.createElement('iframe');
+    iframe.id = 'iframe_suppliers_extension';
+    iframe.src = chrome.runtime.getURL('popup.html');
+    document.body.appendChild(iframe);
+          }
+    break;
+  default:
+    // code block
+}
+
 }

@@ -3,25 +3,22 @@
     "name": "react-boilerplate",
     "description": "react-boilerplate for chrome extension",
     "version": "1.0.0",
-    "action" : {
-        "default_popup": "popup.html",
-        "default_title": "React Boilerplate",
-        "default_icon" : "icon.png",
-        "type": "persistent"
-    },
-    "browser_action": {
-        "type": "persistent"
-      },
+    "action" :  {},
     "chrome_url_overrides": {
         "newtab": "newTab.html"
     },
+    "web_accessible_resources": [{
+  "resources": ["popup.html"],
+  "matches": ["<all_urls>"]
+}],
     "permissions": [
         "tabs",
         "bookmarks",
         "storage",
         "identity",
         "activeTab", 
-        "scripting"
+        "scripting",
+        "windows"
     ],
     "icons": {
         "16" : "icon.png",

@@ -14,7 +14,7 @@ const ListWithRemoveItem = (prop) => {
 
   const [list, setList] = useState(prop.addjsonData);
 
-
+console.log('new ul');
   useEffect(() => {
     try {
       setList(prop.addjsonData);
@@ -27,7 +27,7 @@ const ListWithRemoveItem = (prop) => {
   useEffect(() => {
     try {
       if(list.length!=0){
-
+      chrome.storage.local.set({ productsData: list});
       // localStorage.setItem('data', JSON.stringify(list)); 
       console.log('delet prop',list);
       }
@@ -37,7 +37,7 @@ const ListWithRemoveItem = (prop) => {
   }, [list]);
   
   const handleClick = (id) => {
-    const updatedItems = list.filter(item => item.category_id !== id);
+    const updatedItems = list.filter(item => item.id !== id);
     setList(updatedItems);
   }
 
@@ -52,12 +52,12 @@ const ListWithRemoveItem = (prop) => {
       {list&&list.filter(item => item.category_id == prop.val).map(item => 
       {
         const randomNumber = Math.floor(Math.random() * 10000); 
-        console.log('randomNumber',randomNumber);
+        // console.log('randomNumber',randomNumber);
       return (
               
         <li key={randomNumber} >         
-          <label className="wrap_product_line"><span className="product_line">{item.product_url}  </span></label>
-          <span  className={"delete_btn"+ item.category_id} onClick={() =>{  return handleClick(randomNumber)}}></span>
+          <label className="wrap_product_line"><a href={item.product_url} target="_blank"><span className="product_line">{item.page_title}</span></a></label>
+          <span  className={"delete_btn "+ item.category_id} onClick={() =>{  return handleClick(item.id)}}></span>
         </li>
       )})}
      {/* {data.map((item) => (
