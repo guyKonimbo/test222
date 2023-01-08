@@ -1,14 +1,29 @@
-// chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-//     console.log(msg);
-//     console.log(sender);
-//     sendResponse("Front the background Script");
-// })
-chrome.browserAction.onClicked.addListener(function(tab) {
-    chrome.tabs.sendMessage(tab.id, { type: "EXECUTE_SCRIPT" });
+
+console.log('woro333333333');
+const val55 = "valconst"
+const objback = { key: 'value2'}
+var dataObj = {
+urllik: "link",
+nameproducy:"namenn"
+};
+chrome.storage.local.set(dataObj)
+
+chrome.storage.local.get(['urllik'], result => {
+    console.log('get val back urllik',result.urllik) // returns value
+})
+
+
+  chrome.action.onClicked.addListener(tab => {
+    // Send a message to the active tab
+      console.log("clicked icon on tab ", tab);
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      var activeTab = tabs[0];
+      chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
+    });
   });
+
+
+
   
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    if (message.type === 'DATA') {
-      chrome.runtime.sendMessage({ type: 'DATA', data: message.data });
-    }
-  });
+
+
