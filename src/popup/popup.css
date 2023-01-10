@@ -100,13 +100,16 @@
       box-shadow: 0px 0px 5px rgba(21, 21, 21, 0.28);
   }
   
-  div#root {
-      background: url(https://konimboimages.s3.amazonaws.com/system/photos/762011/original/23ad31ae288ac0553820e7562e06f33b.svg?1672231177);
-      background-repeat: no-repeat;
-      background-position: bottom left;
-      background-size: 93px;
-      height: 100%;
-  }
+
+  .suppliers_wrapper_main {
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/762011/original/23ad31ae288ac0553820e7562e06f33b.svg?1672231177);
+    background-repeat: no-repeat;
+    background-position-x: 40px;
+    background-position: bottom 15px left 17px;
+    background-size: 93px;
+    height: 100%;
+    /* padding: 13px; */
+}
   label.suppliers__checkbox {
       display: flex;
       flex-direction: row;
@@ -206,9 +209,16 @@
       border: none;
       height: 30px;
       padding: 0 6px;
-      margin: 10px 0 0 0;
+      width: 100%;
+      font-size: 13px;
   }
   
+  label.suppliers__label > select{
+    margin: 10px 0 0 0;
+}
+  label.suppliers__label > input{
+    margin: 17px auto;
+}
   .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -247,6 +257,10 @@
     overflow: hidden;
 
 }
+.suppliers_wrapper {
+    width: 244px;
+    margin: auto;
+}
 
 .suppliers_wrapper_main{
     margin: 0;
@@ -255,7 +269,7 @@
     -moz-osx-font-smoothing: grayscale;
     width: 284px;
     height: 400px;
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     box-shadow: 0px 0px 6px 1px rgb(51 51 51 / 16%);
     border-radius: 12px;
     margin: 10px;
@@ -295,14 +309,16 @@ h1.suppliers__headline:before {
     flex-direction: row;
     justify-content: space-between;
 }
-.sittings_btn{
-    background: url(https://konimboimages.s3.amazonaws.com/system/photos/763701/original/de1538534f0431ff2de7bcd7d45baa8e.svg?1672745538);
+
+.sittings_btn {
+    background: url(https://icons.veryicon.com/png/System/100%20Flat%20Vol.%202/inside%20logout.png);
     display: block;
     height: auto;
-    width: 30px;
+    width: 40px;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
+    background-size: 38px;
 }
 
 .back_btn {
@@ -322,5 +338,58 @@ h1.suppliers__headline:before {
     background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736976/original/85886624cb7720543bb8543d7d5ea526.svg?1666264253);
     background-repeat: no-repeat;
     background-position: right;
-    margin-top: 15px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.suppliers__login_span{
+    font-size: 16px;
+    height: 16px;
+    color: #111111;
+    line-height: 12px;
+    display: block;
+}
+input.suppliers__login_checkbox{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    appearance: none;
+    border: 1px solid #000;
+    border-radius: 2px;
+
+}
+input.suppliers__login_checkbox:checked{
+    border: 1px solid #8CBD34;
+    background-color: #8CBD34;
+    background-repeat: no-repeat;
+    background-position: center;
+    content: "";
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736384/original/42034c06ad0517336ad1df937337efff.svg?1666102071);
+}
+
+
+label.suppliers_checkbox__label {
+    display: flex;
+    margin-right: 2px;
+}
+
+.refInput{
+    display: none;
+}
+
+.suppliers__Confirmation_span {
+    display: block;
+    margin-top: 6px;
+    color: #689ECE;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.suppliers__Confirmation_h4 {
+    font-size: 13px;
+    font-weight: 700;
 }

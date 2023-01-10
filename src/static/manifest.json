@@ -18,7 +18,8 @@
         "identity",
         "activeTab", 
         "scripting",
-        "windows"
+        "windows",
+        "passwordSavingEnabled"
     ],
     "icons": {
         "16" : "icon.png",
