@@ -1,7 +1,17 @@
+@font-face {
+  font-family: 'almoni-neue';
+  src: url('https://konimbo-general-files.s3.eu-west-1.amazonaws.com/fonts/almoni-neue/almoni-neue-aaa-400.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .App {
     text-align: center;
   }
-  
+  .product_line{
+    display: block;
+  }
   label.suppliers__label {
       display: flex;
       flex-direction: column;
@@ -12,7 +22,10 @@
   }
   label.suppliers__label > select:focus-visible,
   label.suppliers__label > select:focus,
-  label.suppliers__label > select:hover {
+  label.suppliers__label > select:hover,
+   label.suppliers__label > input:focus-visible,
+  label.suppliers__label > input:focus,
+  label.suppliers__label > input:hover  {
       box-shadow: 0 0 0 1px #00366c;
       outline: none;
   }
@@ -23,11 +36,27 @@
       overflow: auto;
       margin: 0;
       HEIGHT: 102PX;
+      /* direction: rtl; */
+  }
+  .wrap_product_line{
+     display: block;
+     width: 89%;    
+     overflow: hidden;
+     text-align: right;
   }
   
-  .suppliers__checkbox  input[type=checkbox]:checked + .checkbox-blog-switch {
-      background: #91C03C;
-  }
+
+   .suppliers__checkbox  input[type=checkbox]:checked + .checkbox-blog-switch {
+    background: #91C03C;
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736384/original/42034c06ad0517336ad1df937337efff.svg?1666102071);
+    background-repeat: no-repeat;
+    background-position: bottom 5px left 4px;
+}
+
+   .suppliers__checkbox  input[type=checkbox]:checked + .checkbox-blog-switch:before{
+    display: none;
+
+   }
   .suppliers__checkbox input[type="checkbox"]:not(:disabled) + .checkbox-blog-switch {
       cursor: pointer;
       margin-left: 6px;
@@ -45,56 +74,61 @@
       z-index: -1;
       opacity: 0;
   }
+
   .suppliers__checkbox .checkbox-blog-switch:after {
-      content: '';
-      position: absolute;
-      top: 4px;
-      right: 6px;
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #fff;
-      /* box-shadow: 0 3px 5px rgba(0, 0, 0, .3); */
-      transition: .15s;
-      border: 2px solid #C1DC92;
-      transition: all .5s ease;
-  }
+    content: '';
+    position: absolute;
+    top: 3.7px;
+    margin-left: auto;
+    right: 3px;
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fff;
+    transition: .15s;
+    transition: all .5s ease;
+    border: 1.375px solid #8CBD34;
+}
+
+.suppliers__checkbox .checkbox-blog-switch:before {
+    content: '';
+    position: absolute;
+    top: 1.75px;
+    left: 1.4px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #91C03C;
+    transition: all .4s ease;
+}
+
+
+.suppliers__checkbox .checkbox-blog-switch {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 36px;
+    height: 20px;
+    border-radius: 68px;
+    vertical-align: top;
+    background: #fff;
+    transition: .2s;
+    border: 1.5px solid #8CBD34;
+}
+
   
-  .suppliers__checkbox .checkbox-blog-switch:before {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 4px;
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #91C03C;
-      /* box-shadow: 0 3px 5px rgba(0, 0, 0, .3); */
-      transition: all .4s ease;
-  }
-  .suppliers__checkbox .checkbox-blog-switch {
-      position: relative;
-      display: inline-block;
-      box-sizing: border-box;
-      width: 51px;
-      height: 26px;
-      border-radius: 25%/50%;
-      vertical-align: top;
-      background: #fff;
-      transition: .2s;
-      border: 2px solid #C1DC92;
-      box-shadow: 0px 0px 5px rgba(21, 21, 21, 0.28);
-  }
-  
-  div#root {
-      background: url(https://konimboimages.s3.amazonaws.com/system/photos/762011/original/23ad31ae288ac0553820e7562e06f33b.svg?1672231177);
-      background-repeat: no-repeat;
-      background-position: bottom left;
-      background-size: 93px;
-      height: 100%;
-  }
+
+  .suppliers_wrapper_main {
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/762011/original/23ad31ae288ac0553820e7562e06f33b.svg?1672231177);
+    background-repeat: no-repeat;
+    background-position-x: 40px;
+    background-position: bottom 15px left 17px;
+    background-size: 93px;
+    height: 100%;
+    /* padding: 13px; */
+}
   label.suppliers__checkbox {
       display: flex;
       flex-direction: row;
@@ -106,9 +140,12 @@
       margin-top: 7px;
   }
   
-  .suppliers__button:hover{
+.Confirmation__button:hover ,
+.suppliers__button:hover{
     background: linear-gradient(315deg, #4D7800 -0.12%, #9AD03B 99.88%);
   }
+
+
   .suppliers__button{
       width: 100%;
       height: 36px;
@@ -120,7 +157,7 @@
       font-weight: 700;
       margin: auto;
       display: block;
-      margin-top: 15px;
+      margin-top: 20px;
       cursor: pointer;
   }
   .suppliers__button.erorr_btn{
@@ -131,14 +168,20 @@
       background: #FFFFFF;
       box-shadow: 0px 0px 6px 1px rgba(51, 51, 51, 0.16);
       border-radius: 6px;
-      height: 120px;
+      height: 200px;
       direction: ltr;
       /* overflow: auto; */
       margin-top: 5px;
+      width: 100%;
   
   }
-  
-  ul.suppliers__ul li span {
+    .suppliers_ulWrapper.none{
+        display:none;
+    }
+
+
+
+  ul.suppliers__ul li span.delete_btn {
       background-image: url("https://konimboimages.s3.amazonaws.com/system/photos/747535/original/d898bf4417163494b25a80e29b13a11f.svg?1668671938");
       background-color: transparent;
       border: none;
@@ -147,6 +190,7 @@
       width: 15px;
       padding: 0;
       background-position: center;
+      cursor: pointer;
   }
   
   ul.suppliers__ul li {
@@ -157,7 +201,7 @@
       font-weight: 400;
       flex-direction: row-reverse;
       justify-content: space-between;
-      height: 20px;
+      height: 26px;
       padding: 3px 8px;
       line-height: 20px;
   }
@@ -175,21 +219,57 @@
   ul::-webkit-scrollbar-track, ul::-webkit-scrollbar-track {
      background-color: transparent;
   }
+
+    select::-webkit-scrollbar {
+      width: 5px;
+   
+    
+  }
+  select::-webkit-scrollbar-thumb {
+     background: #8CBD34;
+    border-radius: 100px;
+  }
+  
+  select::-webkit-scrollbar-track, ul::-webkit-scrollbar-track {
+     background-color: transparent;
+  }
+  
   
   ul.suppliers__ul li:hover {
       background: #F3F3F3;
   }
-  label.suppliers__label > select ,
+
+  label.suppliers__label > select, label.suppliers__label > input {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px 1px rgba(51, 51, 51, 0.16);
+    border-radius: 68.363px;
+    border: none;
+    height: 30px;
+    padding: 0 6px;
+    width: 100%;
+    font-size: 15px;
+    color: #111111;
+}
+
+a.suppliers__Confirmation_a {
+    color: #689ECE;
+}
+
+ label.suppliers__label > input {
+    padding-right: 15px;
+}
+
+
+ label.suppliers__label > select {
+    padding-right: 7px;
+}
+
+  label.suppliers__label > select{
+    margin: 10px 0 0 0;
+}
   label.suppliers__label > input{
-      background: #FFFFFF;
-      box-shadow: 0px 0px 6px 1px rgba(51, 51, 51, 0.16);
-      border-radius: 68.363px;
-      border: none;
-      height: 30px;
-      padding: 0 6px;
-      margin: 10px 0 0 0;
-  }
-  
+    margin: 17px auto;
+}
   .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -225,19 +305,29 @@
     }
   }
   body {
+    overflow: hidden;
+
+}
+.suppliers_wrapper {
+    width: 244px;
+    margin: auto;
+}
+
+.suppliers_wrapper_main{
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'almoni-neue';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     width: 284px;
-    height: 400px;
-    background: #FFFFFF;
+    height: 500px;
+    background-color: #FFFFFF;
     box-shadow: 0px 0px 6px 1px rgb(51 51 51 / 16%);
     border-radius: 12px;
     margin: 10px;
     padding: 10px;
     direction: rtl;
     padding-top: 6px;
+
 }
 
 code {
@@ -245,13 +335,13 @@ code {
 }
 
 h1.suppliers__headline {
-    color: #8CBD34;
-    font-size: 20px;
+   color: #111111;
+    font-size: 15px;
     padding-right: 50px;
     position: relative;
     height: 51px;
     line-height: 51px;
-   
+    font-weight: 900;
 }
 
 h1.suppliers__headline:before {
@@ -269,19 +359,96 @@ h1.suppliers__headline:before {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
-.sittings_btn{
-    background: url(https://konimboimages.s3.amazonaws.com/system/photos/763701/original/de1538534f0431ff2de7bcd7d45baa8e.svg?1672745538);
+
+.Logout_btn{
+    color: #8CBD34;
     display: block;
     height: auto;
-    width: 30px;
-    background-position: center;
+    width: 40px;
+    font-size: 13px;
+    cursor: pointer;
+
+}
+
+
+.erorr_msg {
+    color: #CA3142!important;
+    padding-right: 20px;
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736976/original/85886624cb7720543bb8543d7d5ea526.svg?1666264253);
     background-repeat: no-repeat;
+    background-position: right;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.suppliers__login_span{
+    font-size: 16px;
+    height: 16px;
+    color: #111111;
+    line-height: 12px;
+    display: block;
+}
+input.suppliers__login_checkbox{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    appearance: none;
+    border: 1px solid #000;
+    border-radius: 2px;
+
+}
+input.suppliers__login_checkbox:checked{
+    border: 1px solid #8CBD34;
+    background-color: #8CBD34;
+    background-repeat: no-repeat;
+    background-position: center;
+    content: "";
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736384/original/42034c06ad0517336ad1df937337efff.svg?1666102071);
+}
+
+
+label.suppliers_checkbox__label {
+    display: flex;
+    margin-right: 2px;
+}
+
+.refInput{
+    display: none;
+}
+
+
+.suppliers__Confirmation_span {
+    display: inline-block;
+    margin-top: 10px;
+    color: #8CBD34;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.suppliers__Confirmation_h4 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.Confirmation__button {
+    width: 188px;
+    height: 36px;
+    background: linear-gradient(315deg, #70A414 -0.12%, #AED667 99.88%);
+    border-radius: 64px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    margin: auto;
+    display: block;
     cursor: pointer;
 }
 
 .back_btn {
-    background: url(https://konimboimages.s3.amazonaws.com/system/photos/763831/original/44060f5cd9eb9462f0cc94e01587fe26.svg?1672757391);
     width: 40px;
     height: 35px;
     display: block;
@@ -290,11 +457,23 @@ h1.suppliers__headline:before {
     background-position: right;
     background-size: 30px 30px;
     cursor: pointer;
+    text-decoration-line: underline;
+    color: #8CBD34;
+    font-size: 16px;
 }
-.erorr_msg {
-    color: #CA3142!important;
-    padding-right: 20px;
-    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736976/original/85886624cb7720543bb8543d7d5ea526.svg?1666264253);
-    background-repeat: no-repeat;
-    background-position: right;
+
+.btn_Wrapper {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+body .suppliers_ulWrapper.Confirmation__ulWrapper{
+    height: 236px;
+}
+
+.Confirmation__Wrapper label.suppliers_checkbox__label {
+    margin-top: 20px;
 }

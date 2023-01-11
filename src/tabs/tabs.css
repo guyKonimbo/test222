@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'almoni-neue';
+  src: url('https://konimbo-general-files.s3.eu-west-1.amazonaws.com/fonts/almoni-neue/almoni-neue-aaa-400.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+body{
+    font-family: 'almoni-neue';
+}
