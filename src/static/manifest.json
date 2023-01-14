@@ -4,9 +4,6 @@
     "description": "react-boilerplate for chrome extension",
     "version": "1.0.0",
     "action" :  {},
-    "chrome_url_overrides": {
-        "newtab": "newTab.html"
-    },
     "web_accessible_resources": [{
   "resources": ["popup.html"],
   "matches": ["<all_urls>"]
@@ -18,8 +15,7 @@
         "identity",
         "activeTab", 
         "scripting",
-        "windows",
-        "passwordSavingEnabled"
+        "windows"
     ],
     "icons": {
         "16" : "icon.png",

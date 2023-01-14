@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'almoni-neue';
+  src: url('https://konimbo-general-files.s3.eu-west-1.amazonaws.com/fonts/almoni-neue/almoni-neue-aaa-400.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .App {
     text-align: center;
   }
@@ -27,19 +35,28 @@
       background: #FFFFFF;
       overflow: auto;
       margin: 0;
-      HEIGHT: 102PX;
+      HEIGHT: 190PX;
       /* direction: rtl; */
   }
   .wrap_product_line{
      display: block;
-     width: 80%;    
+     width: 89%;    
      overflow: hidden;
      text-align: right;
   }
   
-  .suppliers__checkbox  input[type=checkbox]:checked + .checkbox-blog-switch {
-      background: #91C03C;
-  }
+
+   .suppliers__checkbox  input[type=checkbox]:checked + .checkbox-blog-switch {
+    background: #91C03C;
+    background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/736384/original/42034c06ad0517336ad1df937337efff.svg?1666102071);
+    background-repeat: no-repeat;
+    background-position: bottom 5px left 4px;
+}
+
+   .suppliers__checkbox  input[type=checkbox]:checked + .checkbox-blog-switch:before{
+    display: none;
+
+   }
   .suppliers__checkbox input[type="checkbox"]:not(:disabled) + .checkbox-blog-switch {
       cursor: pointer;
       margin-left: 6px;
@@ -57,48 +74,50 @@
       z-index: -1;
       opacity: 0;
   }
+
   .suppliers__checkbox .checkbox-blog-switch:after {
-      content: '';
-      position: absolute;
-      top: 4px;
-      right: 6px;
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #fff;
-      /* box-shadow: 0 3px 5px rgba(0, 0, 0, .3); */
-      transition: .15s;
-      border: 2px solid #C1DC92;
-      transition: all .5s ease;
-  }
-  
-  .suppliers__checkbox .checkbox-blog-switch:before {
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 4px;
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #91C03C;
-      /* box-shadow: 0 3px 5px rgba(0, 0, 0, .3); */
-      transition: all .4s ease;
-  }
-  .suppliers__checkbox .checkbox-blog-switch {
-      position: relative;
-      display: inline-block;
-      box-sizing: border-box;
-      width: 51px;
-      height: 26px;
-      border-radius: 25%/50%;
-      vertical-align: top;
-      background: #fff;
-      transition: .2s;
-      border: 2px solid #C1DC92;
-      box-shadow: 0px 0px 5px rgba(21, 21, 21, 0.28);
-  }
+    content: '';
+    position: absolute;
+    top: 3.7px;
+    margin-left: auto;
+    right: 3px;
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fff;
+    transition: .15s;
+    transition: all .5s ease;
+    border: 1.375px solid #8CBD34;
+}
+
+.suppliers__checkbox .checkbox-blog-switch:before {
+    content: '';
+    position: absolute;
+    top: 1.75px;
+    left: 1.4px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #91C03C;
+    transition: all .4s ease;
+}
+
+
+.suppliers__checkbox .checkbox-blog-switch {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 36px;
+    height: 20px;
+    border-radius: 68px;
+    vertical-align: top;
+    background: #fff;
+    transition: .2s;
+    border: 1.5px solid #8CBD34;
+}
+
   
 
   .suppliers_wrapper_main {
@@ -121,9 +140,12 @@
       margin-top: 7px;
   }
   
-  .suppliers__button:hover{
+.Confirmation__button:hover ,
+.suppliers__button:hover{
     background: linear-gradient(315deg, #4D7800 -0.12%, #9AD03B 99.88%);
   }
+
+
   .suppliers__button{
       width: 100%;
       height: 36px;
@@ -135,8 +157,9 @@
       font-weight: 700;
       margin: auto;
       display: block;
-      margin-top: 15px;
+      margin-top: 20px;
       cursor: pointer;
+      letter-spacing: 1px;
   }
   .suppliers__button.erorr_btn{
     cursor: not-allowed;
@@ -146,7 +169,7 @@
       background: #FFFFFF;
       box-shadow: 0px 0px 6px 1px rgba(51, 51, 51, 0.16);
       border-radius: 6px;
-      height: 120px;
+      height: 200px;
       direction: ltr;
       /* overflow: auto; */
       margin-top: 5px;
@@ -197,22 +220,51 @@
   ul::-webkit-scrollbar-track, ul::-webkit-scrollbar-track {
      background-color: transparent;
   }
+
+    select::-webkit-scrollbar {
+      width: 5px;
+   
+    
+  }
+  select::-webkit-scrollbar-thumb {
+     background: #8CBD34;
+    border-radius: 100px;
+  }
+  
+  select::-webkit-scrollbar-track, ul::-webkit-scrollbar-track {
+     background-color: transparent;
+  }
+  
   
   ul.suppliers__ul li:hover {
       background: #F3F3F3;
   }
-  label.suppliers__label > select ,
-  label.suppliers__label > input{
-      background: #FFFFFF;
-      box-shadow: 0px 0px 6px 1px rgba(51, 51, 51, 0.16);
-      border-radius: 68.363px;
-      border: none;
-      height: 30px;
-      padding: 0 6px;
-      width: 100%;
-      font-size: 13px;
-  }
-  
+
+  label.suppliers__label > select, label.suppliers__label > input {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px 1px rgba(51, 51, 51, 0.16);
+    border-radius: 68.363px;
+    border: none;
+    height: 30px;
+    padding: 0 6px;
+    width: 100%;
+    font-size: 15px;
+    color: #111111;
+}
+
+a.suppliers__Confirmation_a {
+    color: #689ECE;
+}
+
+ label.suppliers__label > input {
+    padding-right: 15px;
+}
+
+
+ label.suppliers__label > select {
+    padding-right: 7px;
+}
+
   label.suppliers__label > select{
     margin: 10px 0 0 0;
 }
@@ -264,11 +316,11 @@
 
 .suppliers_wrapper_main{
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'almoni-neue';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     width: 284px;
-    height: 400px;
+    height: 500px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 6px 1px rgb(51 51 51 / 16%);
     border-radius: 12px;
@@ -284,13 +336,13 @@ code {
 }
 
 h1.suppliers__headline {
-    color: #8CBD34;
-    font-size: 20px;
+   color: #111111;
+    font-size: 15px;
     padding-right: 50px;
     position: relative;
     height: 51px;
     line-height: 51px;
-   
+    font-weight: 900;
 }
 
 h1.suppliers__headline:before {
@@ -308,30 +360,20 @@ h1.suppliers__headline:before {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
-.sittings_btn {
-    background: url(https://icons.veryicon.com/png/System/100%20Flat%20Vol.%202/inside%20logout.png);
+.Logout_btn{
+    color: #8CBD34;
     display: block;
     height: auto;
     width: 40px;
-    background-position: center;
-    background-repeat: no-repeat;
+    font-size: 13px;
     cursor: pointer;
-    background-size: 38px;
+
 }
 
-.back_btn {
-    background: url(https://konimboimages.s3.amazonaws.com/system/photos/763831/original/44060f5cd9eb9462f0cc94e01587fe26.svg?1672757391);
-    width: 40px;
-    height: 35px;
-    display: block;
-    margin-top: 10px;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px 30px;
-    cursor: pointer;
-}
+
 .erorr_msg {
     color: #CA3142!important;
     padding-right: 20px;
@@ -379,17 +421,64 @@ label.suppliers_checkbox__label {
     display: none;
 }
 
+
 .suppliers__Confirmation_span {
-    display: block;
-    margin-top: 6px;
-    color: #689ECE;
-    font-size: 13px;
+    display: inline-block;
+    margin-top: 10px;
+    color: #8CBD34;
     text-decoration: underline;
     cursor: pointer;
 }
 
-
 .suppliers__Confirmation_h4 {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
+}
+
+.Confirmation__button {
+    width: 188px;
+    height: 36px;
+    background: linear-gradient(315deg, #70A414 -0.12%, #AED667 99.88%);
+    border-radius: 64px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.back_btn {
+    width: 40px;
+    height: 35px;
+    display: block;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30px 30px;
+    cursor: pointer;
+    text-decoration-line: underline;
+    color: #8CBD34;
+    font-size: 16px;
+}
+
+.btn_Wrapper {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+body .suppliers_ulWrapper.Confirmation__ulWrapper{
+    height: 236px;
+}
+
+.Confirmation__Wrapper label.suppliers_checkbox__label {
+    margin-top: 20px;
+}
+
+button{
+    letter-spacing: 1px;
 }

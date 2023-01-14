@@ -16,6 +16,7 @@ const Popup = () => {
       ];
     
        const [value, setValue] = React.useState("");
+       const [cat_name_value, set_cat_name_value] = useState("");    
        const [test, setTest] = React.useState('t');
        const [val, setVal] = React.useState();
        const [data, setData] = useState([]);
@@ -24,7 +25,9 @@ const Popup = () => {
        const [eroorIsActive, setErorrIsActive] = useState(' ');
        const [isChecked, setIsChecked] = useState(false);
        const refTest = useRef(null);
+     
        const [confirmationIsActive, setconfirmationIsActive] = useState(false);
+       const [catOptions, setcatOptions] = useState([]);
 
 
        console.log('new 666');
@@ -45,50 +48,28 @@ const Popup = () => {
                     if(result.v2_category_link){
                       setJsonLinkStoreCategory(result.v2_category_link);
                       }})
+
+
             }, []);
 
+            useEffect(() => {           
+              if(jsonLinkStoreCategory!=""){
+              fetch(jsonLinkStoreCategory)
+                .then(response => response.json())
+                .then(data => {
+                  setcatOptions(prevcatOptions=> [...prevcatOptions,...data]);
+                  console.log('catOptions',catOptions,'if jsonLinkStoreCategory',jsonLinkStoreCategory , "dataaa" , data);
+                }).catch((error) => {
+                  console.log(error)
+                });             
+            }else{
+              console.log('else jsonLinkStoreCategory',jsonLinkStoreCategory);
+              
+            }
+            }, [jsonLinkStoreCategory]);
 
-    useEffect(() => {        
-      chrome.runtime.onMessage.addListener((request) => {
-        console.log('reqmsg type55',request.type);
-         console.log('reqmsg',request.message);
-        if(request.type=="checkbox_clicked"){
-          console.log("refTest val",refTest.current.value );
-          const newval = refTest.current.value;
-        chrome.storage.local.get(['productsData'], result => {
-                if(result.productsData){
-                  fetch(request.message)
-                       .then(response => response.text())
-                       .then(html => {
-                        const doc = new DOMParser().parseFromString(html, "text/html");
-                        const title = doc.title;
-                        console.log(title);
-                            const array = result.productsData;
-                            const randomNumber_xx = Math.floor(Math.random() * 10000); 
-                            const dataInput = { category_id: newval , product_url: request.message ,id: randomNumber_xx ,page_title:title };
-                            chrome.storage.local.set({ productsData: [...array,dataInput] }, () => {
-                            console.log('Array updated' ,  [...array,dataInput]);
-                            setData( [...array,dataInput]);   
-                            });
-                         });
-                }else{
-                    fetch(request.message)
-                       .then(response => response.text())
-                       .then(html => {
-                        const doc = new DOMParser().parseFromString(html, "text/html");
-                        const title = doc.title;
-                        console.log(title);
-                        const datainput = { category_id: newval , product_url: request.message ,id: "0" , page_title:title};
-                       chrome.storage.local.set({ productsData: [datainput] }, () => {
-                       console.log('Array saved to local storage' ,  [datainput]);
-                       setData(prevdata=> [...prevdata,datainput]);   
-                       });          
-                         });
-                }
-        });
-      }
-      });
-    }, [])
+
+
 
 
   
@@ -122,6 +103,10 @@ const Popup = () => {
       const getval = (val) => {
         setValue(val);
       };
+
+      const get_cat_name = (val) => {
+        set_cat_name_value(val);
+      };
     
        const getJSON1 = (val) => {
         setData(val);
@@ -146,6 +131,10 @@ const Popup = () => {
         chrome.storage.local.remove('v2_category_link');
         setSittingsIsActive(true);
       };
+     const setDataFromConfirmation = (result) =>{
+      setData(result);    
+     }
+
       let headlineText = <h1  className='suppliers__headline'>משיכת מוצרים</h1>
       let main = <div>
       <label className='suppliers__checkbox'>
@@ -158,6 +147,7 @@ const Popup = () => {
         label="בחרו קטגוריה לשיוך המוצרים אצלכם בחנות"
         classLabel="suppliers__label"
         addVal={getval}
+        getJSON1={getJSON1}
         fetchLink={jsonLinkStoreCategory}
         ErorrIsActive={ErorrIsActive}
       />
@@ -165,7 +155,7 @@ const Popup = () => {
       <button type="button" className={"suppliers__button " + eroorIsActive }  onClick={() => setconfirmationIsActive(true)} > המשך</button>   
       </div>
       if(confirmationIsActive){
-        main = <ConfirmationComponent erorrIsActive={eroorIsActive} ConfirmationIsActive={ConfirmationIsActive} label="תצוגה מקדימה למוצר" classLabel="suppliers__label" classUl="suppliers__ul" />
+        main = <ConfirmationComponent setDataFromConfirmation={setDataFromConfirmation} erorrIsActive={eroorIsActive} ConfirmationIsActive={ConfirmationIsActive} label="תצוגה מקדימה למוצר" classLabel="suppliers__label" classUl="suppliers__ul" />
       }
 
 
@@ -173,7 +163,7 @@ const Popup = () => {
         <div className='suppliers_wrapper'>
         <div className='suppliers__headline_wrapper'>
         {headlineText}
-        <span className="sittings_btn" onClick={() => userLogout()}></span>
+        <span className="Logout_btn" onClick={() => userLogout()}>התנתקות</span>
         </div>
         {sittingsIsActive === true ? (<LoginComponent SittingsIsActive={SittingsIsActive} />) 
         :

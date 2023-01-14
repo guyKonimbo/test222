@@ -11,14 +11,14 @@
 
 input.checkbox_konimbo {
     appearance: none;
-    border: 2px solid #000;
+    border: 1px solid #000;
     height: 20px;
     width: 20px;
     border-radius: 2px;
 }
 
 input.checkbox_konimbo:checked{
-    border: 2px solid #8CBD34;
+    border: 1px solid #8CBD34;
     background-color: #8CBD34;
     /* border: none; */
     background-repeat: no-repeat;
@@ -33,5 +33,5 @@ input.checkbox_konimbo:checked{
     top: 15px;
     border: none;
     left: 15px;
-    height: 430px;
+    height: 520px;
 }

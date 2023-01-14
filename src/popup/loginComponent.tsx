@@ -37,9 +37,8 @@ function LoginComponent(prop) {
     <form onSubmit={handleSubmitLogin} >
     {/* <span className="back_btn" onClick={() => prop.SittingsIsActive(false)}></span> */}
       <label className="suppliers__label">
-      <input  type="text" name="username"  placeholder='שם משתמש' ref={input_user_name}  />
-      <input  type="password" name="password"  placeholder='סיסמה' ref={input_user_password} />
-      </label>
+      <input  type="text" name="username"  placeholder='שם משתמש' ref={input_user_name}  /></label>
+      <label className="suppliers__label"><input  type="password" name="password"  placeholder='סיסמה' ref={input_user_password} /></label>
       {erorrMsg ?<div className="erorr_msg">{erorrMsg}</div> : ""}
       <label className="suppliers_checkbox__label" ><input className="suppliers__login_checkbox" name="rememberMe" type="checkbox" ref={input_remember_me}/><span className="suppliers__login_span">זכרו אותי</span></label>         
       <button className='suppliers__button' type="submit">התחברות</button>
