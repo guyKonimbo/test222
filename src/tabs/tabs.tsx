@@ -74,6 +74,7 @@ useEffect(() => {
           <h1>משיכת מוצרים</h1>
       <div className="suppliers_total_items"  >מוצרים שנמשכו: <span> {listSize} </span></div>
       <div className="suppliers_total_items"  > שם החנות: <span> {storeName} </span></div>
+      <div className="suppliers_total_items"  > שם הספק: <span>  </span></div>
       <div className="suppliers_filter_items" >
       <span className="headline_filter_items" >סינון מוצרים:</span>
       <label className="suppliers__label">

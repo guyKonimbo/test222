@@ -11,7 +11,7 @@ body{
     height: 100% !important;
     width: 100% !important;
     direction: rtl;
-    padding: 52px;
+    padding: 15px;
     background-color: #f1f4fa;
 }
 
@@ -162,4 +162,10 @@ label.suppliers__label span {
   font-size: 20px;
   color: #111;
   line-height: 22px;
+}
+.suppliers_allProducts_wrapper {
+  background-image: url(https://konimboimages.s3.amazonaws.com/system/photos/762011/original/23ad31ae288ac0553820e7562e06f33b.svg?1672231177);
+  background-repeat: no-repeat;
+  background-size: 150px;
+  height: 100%;
 }
